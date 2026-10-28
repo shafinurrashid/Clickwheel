@@ -602,7 +602,7 @@ async function addFiles(list){
   if(!fresh.length){ toast(lf.length?`${lf.length} lyric file${lf.length>1?'s':''} added`:'Already in library'); return; }
   toast(`Reading ${fresh.length} song${fresh.length>1?'s':''}...`,60000);
   const out=[];
-  for(let i=0;i<fresh.length;i+=4) out.push(...await Promise.all(fresh.slice(i,i+4).map(makeTrack)));
+  for(let i=0;i<fresh.length;i+=4) out.push(...await Promise.all(fresh.slice(i,i+4).map(f=>makeTrack(f))));
   S.lib=S.lib.filter(t=>!t.demo||t===S.cur).concat(out);
   toast(`${out.length} song${out.length>1?'s':''} added`);
   const saved=await Promise.all(fresh.map(f=>dbPut('songs',fk(f),{file:f,rel:f.webkitRelativePath||''})));
