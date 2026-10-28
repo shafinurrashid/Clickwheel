@@ -1,5 +1,5 @@
 // Caches the app shell for offline use and keeps the pixel font once it has been fetched.
-const CACHE = 'clickwheel-v2';
+const CACHE = 'clickwheel-v4';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './maskable-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
